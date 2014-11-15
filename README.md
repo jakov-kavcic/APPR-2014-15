@@ -23,7 +23,7 @@ viri so v mapi `podatki/`. Slike, ki jih program naredi, se shranijo v mapo
 `slike/`. Zemljevidi v obliki SHP, ki jih program pobere, se shranijo v mapo
 `zemljevid/`.
 
-## Poročilo
+## Poro??ilo
 
 Poročilo se nahaja v mapi `porocilo/`. Za izdelavo poročila v obliki PDF je
 potrebno datoteko `porocilo/porocilo.tex` prevesti z LaTeXom. Pred tem je
