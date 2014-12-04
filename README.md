@@ -16,7 +16,7 @@ Podatke, ki jih bom uporabljal sem našel na spletni strani od American universi
 ## Program
 
 Glavni program se nahaja v datoteki `projekt.r`. Ko ga poženemo, se izvedejo
-programi, ki ustrezajo drugi, tretji in ??etrti fazi projekta:
+programi, ki ustrezajo drugi, tretji in četrti fazi projekta:
 
 * obdelava, uvoz in čiščenje podatkov: `uvoz/uvoz.r`
 * analiza in vizualizacija podatkov: `vizualizacija/vizualizacija.r`
@@ -27,8 +27,8 @@ viri so v mapi `podatki/`. Slike, ki jih program naredi, se shranijo v mapo
 `slike/`. Zemljevidi v obliki SHP, ki jih program pobere, se shranijo v mapo
 `zemljevid/`.
 
-## Poro??ilo
+## Poročilo
 
-Poročilo se nahaja v mapi `porocilo/`. Za izdelavo poro??ila v obliki PDF je
+Poročilo se nahaja v mapi `porocilo/`. Za izdelavo poročila v obliki PDF je
 potrebno datoteko `porocilo/porocilo.tex` prevesti z LaTeXom. Pred tem je
-potrebno pognati program, saj so v poro??ilu vklju??ene slike iz mape `slike/`.
+potrebno pognati program, saj so v poročilu vključene slike iz mape `slike/`.
