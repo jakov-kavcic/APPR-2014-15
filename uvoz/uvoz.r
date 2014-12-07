@@ -8,24 +8,32 @@ uvoziCounty <- function() {
 }
 
 # Zapisemo podatke v razpredelnico county.
-cat("Zapisem celotne podatke o volitvah\n")
+cat("Vstvarim tabelo z vsemi podatki.\n")
 county <- uvoziCounty()
 
 # Manjkajoce podatke sem zamenjal z 0.
-county$NOTA <- as.numeric(county$NOTA)
+#county$NOTA <- as.numeric(county$NOTA)
 county[is.na(county)] <- 0
 
 #Zdruzil sem lokalne kandidate v eden stolpec OTHER.
-county <- data.frame(county[,1:9],OTHER=apply(county[,9:23],1,sum))
-
-
-
+county <- data.frame(county[,1:9],OTHER=apply(county[,10:23],1,sum))
 
 # Razdelim rezultate v procentih in odanih glasovih.
 procenti <- data.frame(county[1],county[2],PBUSH=county$PBUSH,PGORE=county$PGORE,PNADER=county$PNADER,POTHER=county$POTHER)
-
 odaniGlasovi <- data.frame(county[1],county[2],county[,7:10])
 
+#Grobi rezultati Florida.GCVPk8H6
+floridaLista <- which(county[,1]=="Florida")
+floridaProcenti <- data.frame(county[floridaLista,2:6])
+rownames(floridaProcenti) <- NULL
+floridaGlasovi <- data.frame("COUNTY"=county[floridaLista,2],county[floridaLista,7:10])
+rownames(floridaGlasovi) <- NULL
+floridaGlasovi <- rbind(floridaGlasovi,data.frame(
+  "COUNTY"="Vsota oddanih glasov", 
+  "BUSH" = sum(floridaGlasovi$BUSH) , 
+  "GORE" = sum(floridaGlasovi$GORE), 
+  "NADER"= sum(floridaGlasovi$NADER),
+  "OTHER"= sum(floridaGlasovi$OTHER)))
 
 
 
