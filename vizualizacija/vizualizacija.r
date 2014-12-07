@@ -4,7 +4,7 @@
 source("lib/uvozi.zemljevid.r")
 
 # Uvozimo zemljevid.
-cat("Uvažam zemljevid...\n")
+cat("Uvazam zemljevid...\n")
 obcine <- uvozi.zemljevid("http://e-prostor.gov.si/fileadmin/BREZPLACNI_POD/RPE/OB.zip",
                           "obcine", "OB/OB.shp", mapa = "zemljevid",
                           encoding = "Windows-1250")
