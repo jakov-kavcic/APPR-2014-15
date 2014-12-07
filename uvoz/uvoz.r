@@ -14,6 +14,9 @@ uvoziCounty <- function() {
 cat("Ustvarim tabelo z vsemi podatki.\n")
 county <- uvoziCounty()
 
+county$STATE <- gsub("\\?", " ", county$STATE)
+county$COUNTY <- gsub("\\?", " ", county$COUNTY)
+
 # Manjkajoce podatke sem zamenjal z 0.
 county$NOTA <- as.numeric(county$NOTA)
 county[is.na(county)] <- 0
