@@ -1,6 +1,9 @@
 # Funkcija, ki uvozi podatke iz datoteke druzine.csv
 uvoziCounty <- function() {
-  return(read.csv("podatki/CY/COUNTY.csv", sep = ",",dec = ".", as.is = TRUE,
+  return(read.csv("podatki/CY/COUNTY.csv", 
+                      sep = ",",
+                      dec = ".", 
+                      as.is = TRUE,
                       header = TRUE,
                       na.strings = ".",
                       row.names = 1,
@@ -8,11 +11,11 @@ uvoziCounty <- function() {
 }
 
 # Zapisemo podatke v razpredelnico county.
-cat("Vstvarim tabelo z vsemi podatki.\n")
+cat("Ustvarim tabelo z vsemi podatki.\n")
 county <- uvoziCounty()
 
 # Manjkajoce podatke sem zamenjal z 0.
-#county$NOTA <- as.numeric(county$NOTA)
+county$NOTA <- as.numeric(county$NOTA)
 county[is.na(county)] <- 0
 
 #Zdruzil sem lokalne kandidate v eden stolpec OTHER.
@@ -28,6 +31,7 @@ floridaProcenti <- data.frame(county[floridaLista,2:6])
 rownames(floridaProcenti) <- NULL
 floridaGlasovi <- data.frame("COUNTY"=county[floridaLista,2],county[floridaLista,7:10])
 rownames(floridaGlasovi) <- NULL
+
 floridaGlasovi <- rbind(floridaGlasovi,data.frame(
   "COUNTY"="Vsota oddanih glasov", 
   "BUSH" = sum(floridaGlasovi$BUSH) , 
@@ -35,10 +39,18 @@ floridaGlasovi <- rbind(floridaGlasovi,data.frame(
   "NADER"= sum(floridaGlasovi$NADER),
   "OTHER"= sum(floridaGlasovi$OTHER)))
 
+moznosti <- c("Zmagal Bush.","Zmagal Al Gore.","Zmagal Nader.","Zmagal nekdo drugi.")
+zmagovalec <- character(length(floridaProcenti$BUSH))
 
+bushZmagal <- c(floridaGlasovi$BUSH>floridaGlasovi$GORE)
+goreZmagal <- c(floridaGlasovi$GORE>floridaGlasovi$BUSH)
 
+zmagovalec[bushZmagal] <- "Zmagal Bush."
+zmagovalec[goreZmagal] <- "Zmagal Al Gore."
 
+Zmagovalec <- factor(zmagovalec, levels=moznosti, ordered=TRUE)
 
+floridaGlasovi <- data.frame(floridaGlasovi,"ZMAGOVALEC" = Zmagovalec)
 
 
 
